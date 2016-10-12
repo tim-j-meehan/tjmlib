@@ -46,7 +46,7 @@ class Pentagon
 
 
         // define the starting ray
-        Point<T> holeCenter = hole.p1 - hole.p0 + hole.p1;
+        Point<T> holeCenter = (hole.p1 - hole.p0)/2.0 + hole.p0;
         ray = segments[4].line.rotLine(holeCenter,90-angle);
         curSeg = &segments[4];
         std::shared_ptr<Point<T> > ptmp{new Point<T>};
