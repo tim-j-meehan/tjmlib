@@ -3,6 +3,35 @@
 #include<cmath>
 #include<vector>
 
+template <typename T>
+class Polygon
+{
+    public:
+    std::vector<Point<T> > points;
+    std::vector<Segment<T> > segments;
+        
+    Polygon(int len, int N){
+    points.push_back(Point<T> (0.0,0.0));
+    points.push_back(Point<T> (1.0,0.0)*len);
+    for(int ii =2;ii<len;ii++)
+        points.push_back(points[ii-1] + Point<T>(std::cos((ii-1)*d2r*360.0/N), std::sin((ii-1)*d2r*360.0/N)));
+
+    for(int ii=0;ii<5;ii++)
+        segments.push_back(Segment<T>(points[ii],points[(ii+1)%5]));
+
+    }
+                   
+    
+}
+
+
+template <typename T>
+std::ostream& operator <<(std::ostream& os, const Polygon <T>& p0)
+{
+    for (auto point in points)
+        os << points << "\n ";
+    return os;
+}
 
 template <typename T>
 class Pentagon
