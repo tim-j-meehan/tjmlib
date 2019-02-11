@@ -2,7 +2,11 @@
 #include<iomanip>
 #include<cmath>
 #include<vector>
+#include<compgeom.hh>
 
+#ifndef _LINE_
+#define _LINE_
+const double d2r= M_PI/180.0;
 
 //! Simple class to store a line
 /*! 
@@ -44,6 +48,7 @@ class Line
         T det = AA * l1.BB - l1.AA * BB;
         std::shared_ptr<Point<T> > p0{new Point<T>};
         if (det == 0){
+//            std::cout << "lines par \n";
             return NULL;
         }else{
             p0->x = (l1.BB * CC - BB * l1.CC)/det;
@@ -141,6 +146,10 @@ class Segment
     {
         return (p1 - p0).dot(s1.p1 - s1.p0);
     }
+    //! return a perpendicular bisector to this segment 
+    Line<T> perp_bisect(){
+    	return line.perpLine((p1-p0)/(T) 2.0+p0);
+    }
 };
 
 template <typename T>
@@ -148,4 +157,4 @@ std::ostream& operator <<(std::ostream& os, const Segment <T>& s0)
 {
     return os << "p0 " << s0.p0 << " p1 "<< s0.p1;
 }
-    
+#endif    
