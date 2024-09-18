@@ -3,6 +3,7 @@
 #include<cmath>
 #include<vector>
 
+#define PRINT_BOUNCE 0 
 template <typename T>
 class Polygon
 {
@@ -22,14 +23,14 @@ class Polygon
     }
                    
     
-}
+};
 
 
 template <typename T>
 std::ostream& operator <<(std::ostream& os, const Polygon <T>& p0)
 {
-    for (auto point in points)
-        os << points << "\n ";
+    for (auto point:p0.points)
+        os << point << "\n ";
     return os;
 }
 
